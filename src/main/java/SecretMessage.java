@@ -1,7 +1,6 @@
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-
 public class SecretMessage {
 	
 	private static int getNextPerfectSquare(int num) {
@@ -31,7 +30,7 @@ public class SecretMessage {
 			int amount = Integer.valueOf(scan.nextLine());
 			
 			for (int i = 0; i < amount; ++i) {
-				System.out.println(encode(scan.nextLine().replace("\n", "").replace("\r", "")));
+				System.out.println(encode(scan.nextLine()));
 			}
 			
 		} catch (NumberFormatException e) {
