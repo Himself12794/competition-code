@@ -1,34 +1,42 @@
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class HyphenationRules {
-	private static final String VOWELS = "[aeiouy]";
+	private static final String VOWELS = "([aeiouy])";
 	private static final String CONSONANTS = "(qu|tr|br|str|st|sl|bl|cr|ph|ch|[bcdfghjklmnpqrstvwxz])";
 
-	
-	private static final Pattern END_WORD_E = Pattern.compile("e$", Pattern.CASE_INSENSITIVE);
-
-	//private static final Pattern EXCLUSION = Pattern.compile("[", Pattern.CASE_INSENSITIVE);
 	private static final Pattern RULE_ONE = Pattern.compile(VOWELS + CONSONANTS + CONSONANTS + VOWELS,
 			Pattern.CASE_INSENSITIVE);
-	private static final Pattern RULE_TWO = Pattern.compile(VOWELS + CONSONANTS + VOWELS + "&^e$", Pattern.CASE_INSENSITIVE);
+	private static final Pattern RULE_TWO = Pattern.compile(VOWELS + CONSONANTS + VOWELS, Pattern.CASE_INSENSITIVE);
+	private static final Pattern E_FIX = Pattern.compile("(-)" + CONSONANTS + "(e$)", Pattern.CASE_INSENSITIVE); 
 
 	public static void main(String[] args) {
-		
-		String text = "Word processors often split a word across lines using hyphenation, a technique requiring some knowledge of where the syllables in the word are divided. The rules given in this problem are a bit crude. But they represent a good starting point.";
-		
-		Matcher matches = RULE_ONE.matcher(text);
-		
-		while (matches.find()) {
-			System.out.println(matches.group());
+
+		try (Scanner sc = new Scanner(System.in)) {
+			
+			StringBuilder input = new StringBuilder();
+			String line = sc.nextLine();
+			
+			while (!line.equals("===")) {
+				input.append(line);
+				line = sc.nextLine();
+			}
+			
+			String[] words = input.toString().split(" ");
+			
+			for (String word : words) {
+				String s1 = word.replaceAll(RULE_TWO.pattern(), "$1-$2$3");
+				String s2 = s1.replaceAll(RULE_ONE.pattern(), "$1$2-$3$4");
+				s2 = s2.replaceAll(RULE_TWO.pattern(), "$1-$2$3").replaceAll(E_FIX.pattern(), "$2$3");
+				s2 = s2.replaceAll(RULE_ONE.pattern(), "$1$2-$3$4");
+				System.out.println(s2);
+			}
+			
 		}
-		
-		//for (String match : RULE_ONE.split(text)) {
-		//	System.out.println(match);
-		//}
 
 	}
 
