@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class CantinaOfBabel {
 
+	@SuppressWarnings("unused")
 	private static class Speaker {
 		
 		private String name;
@@ -23,6 +24,18 @@ public class CantinaOfBabel {
 				else understands.add(thing);
 			}
 			
+		}
+		
+		public String getName() {
+			return name;
+		}
+		
+		public String getSpeaks() {
+			return speaks;
+		}
+		
+		public Set<String> getSpokenLanguages() {
+			return understands;
 		}
 		
 	}
