@@ -26,6 +26,7 @@ public class HyphenationRules {
 
 			while (!line.equals("===")) {
 				input.append(line);
+				input.append(' ');
 				line = sc.nextLine();
 			}
 
