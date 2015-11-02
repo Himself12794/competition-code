@@ -3,6 +3,7 @@ import java.util.function.Function;
 import java.util.regex.Pattern;
 
 public class HyphenationRules {
+	
 	private static final String VOWELS = "([aeiouy])";
 	private static final String CONSONANTS = "(qu|tr|br|str|st|sl|bl|cr|ph|ch|[bcdfghjklmnpqrstvwxz])";
 
