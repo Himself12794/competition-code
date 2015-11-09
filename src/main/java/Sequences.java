@@ -73,10 +73,10 @@ public class Sequences {
 			
 			if (index == 0) {
 				missingVal = values[1] / diff;
-				isValid = isArithSequence(missingVal, values[1], values[2], values[3]);
+				isValid = isGeomSequence(missingVal, values[1], values[2], values[3]);
 			} else {
 				missingVal = values[0] * diff;
-				isValid = isArithSequence(values[0], missingVal, values[2], values[3]);
+				isValid = isGeomSequence(values[0], missingVal, values[2], values[3]);
 			}
 			
 		} else {
@@ -85,10 +85,10 @@ public class Sequences {
 			
 			if (index == 2) {
 				missingVal = values[1] * diff;
-				isValid = isArithSequence(values[0], values[1], missingVal, values[3]);
+				isValid = isGeomSequence(values[0], values[1], missingVal, values[3]);
 			} else {
 				missingVal = values[2] * diff;
-				isValid = isArithSequence(values[0], values[1], values[2], missingVal);
+				isValid = isGeomSequence(values[0], values[1], values[2], missingVal);
 			}
 			
 		}
@@ -161,6 +161,7 @@ public class Sequences {
 			
 			while (!isEnd(vals)) {
 				analyze(vals);
+				vals = getValues(sc, 4);
 			}
 			
 		}
