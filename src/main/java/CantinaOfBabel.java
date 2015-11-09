@@ -8,7 +8,6 @@ import java.util.Set;
 
 public class CantinaOfBabel {
 
-	@SuppressWarnings("unused")
 	private static class Speaker {
 
 		private String name;
