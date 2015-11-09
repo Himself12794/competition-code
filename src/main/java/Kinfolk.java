@@ -12,14 +12,8 @@ public class Kinfolk {
 	
 	static {
 		
-		ranges[0] = 0;
-		
-		for (int i = 1; i < ranges.length; i++) {
-			
-			int prev = ranges[i - 1];
-			
-			ranges[i] = prev + (int)Math.pow(2, i);
-		}
+		for (int i = 1; i < ranges.length; i++)			
+			ranges[i] = ranges[i - 1] + (int)Math.pow(2, i);
 		
 	}
 	
@@ -84,11 +78,7 @@ public class Kinfolk {
 		int l1 = getLevel(node1);
 		int l2 = getLevel(node2);
 		
-		//System.out.println("H: " + hDist + ", V: " + vDist + ", L1: " + l1 + ", L2: " + l2);
-		//System.out.println("Node1: " + node1 + ", Node2: " + node2);
-		
 		if (hDist == 0) {
-			//System.out.println(l1 < l2 ? findNthAncestor(node2, hDist) : findNthAncestor(node1, hDist));
 			
 			boolean directAncestorFlag = l2 > l1 ? findNthAncestor(node2, vDist) == node1 : findNthAncestor(node1, vDist) == node2;
 			String relation;
@@ -100,9 +90,7 @@ public class Kinfolk {
 			} else {
 				relation = l1 > l2 ? (gender ? "uncle" : "aunt") : (gender ? "nephew" : "niece");
 			}
-			
-
-			
+						
 			if (vDist < 5) {
 				
 				if (vDist > 1) {
@@ -132,8 +120,6 @@ public class Kinfolk {
 			
 			return ORDINAL[vDist - 1] + " cousin " + TIMES[hDist - 1] + " removed";
 		}
-		
-		//return KIN;
 	}
 	
 	public static int[] getData(Scanner sc) {
@@ -160,12 +146,6 @@ public class Kinfolk {
 			}
 			
 		}
-		
-		//System.out.println(process(1, 5, true));
-		//System.out.println(process(1, 11, false));
-		//System.out.println(process(0, 8, false));
-		//System.out.println(process(5, 7, true));
-		//System.out.println(process(0, 32767, false));
 		
 	}
 	
