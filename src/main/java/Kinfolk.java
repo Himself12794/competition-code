@@ -83,30 +83,25 @@ public class Kinfolk {
 			boolean directAncestorFlag = l2 > l1 ? findNthAncestor(node2, vDist) == node1 : findNthAncestor(node1, vDist) == node2;
 			String relation;
 			
-			if (directAncestorFlag) {
-				
+			if (directAncestorFlag)
 				relation = l1 < l2 ? "child" : "parent";
-					
-			} else {
+			else if (vDist == 0)
+				relation = "sibling";
+			else 
 				relation = l1 > l2 ? (gender ? "uncle" : "aunt") : (gender ? "nephew" : "niece");
-			}
 						
 			if (vDist < 5) {
+					
+				if (vDist >= 2) relation = "grand" + relation;
 				
-				if (vDist > 1) {
+				if (vDist > 2){
 					
-					if (vDist >= 2) relation = "grand" + relation;
-					
-					if (vDist > 2){
-						
-						StringBuilder greats = new StringBuilder();
-						for (int i = 0; i < vDist - 2; i++) {
-							greats.append("great-");
-						}
-						
-						relation = greats.toString() + relation;
+					StringBuilder greats = new StringBuilder();
+					for (int i = 0; i < vDist - 2; i++) {
+						greats.append("great-");
 					}
 					
+					relation = greats.toString() + relation;
 				}
 				
 			} else {
