@@ -2,13 +2,14 @@ import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Set;
-
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 @SuppressWarnings("unchecked")
 public class QuickBrownFox {
 
 	@SuppressWarnings("rawtypes")
-	private static final Set alpha = new HashSet();
+	private static final SortedSet alpha = new TreeSet();
 
 	static {
 		for (char aCar : "abcdefghijklmnopqrstuvwxyz".toCharArray()) {
